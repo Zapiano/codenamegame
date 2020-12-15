@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css'
-import CodenameGame from './CodenameGame';
+import Codename from './Codename';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <CodenameGame />
+    <Codename />
   </React.StrictMode>,
   document.getElementById('root')
 );
