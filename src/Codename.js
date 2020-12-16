@@ -12,79 +12,67 @@ function Card (props) {
   );
 }
 
-class Board extends React.Component {
-  constructor (props) {
-    super(props);
-    this.state = { score: [6,7] }
+function Board(props) {
+  const [score, setScore] = useState([7,7]);
+
+  const onCardClick = () => {
+    const newScore = [...score];
+    newScore[1] = score[1] - 1;
+    newScore[0] = score[0] - 1;
+    setScore(newScore);
   }
 
-  onCardClick () {
-    const newScore = this.state.score;
-    newScore[1] = this.state.score[1] - 1;
-    newScore[0] = this.state.score[0] - 1;
-    this.setState({score: newScore});
-  }
-
-  renderCard(id) {
+  const renderCard = (id) => {
     return (
-      <Card onCardClick={() => this.onCardClick()} id={id} />
+      <Card onCardClick={() => onCardClick()} id={id} />
     );
   }
 
-  render() {
-    return (
-      <div className="Board w-8/12" >
-        <div className="Score flex flex-row justify-around" >
-          <div className="text-center">
-            <div>Team 1</div> 
-            <div>{this.state.score[0]}</div>
-          </div>
-          <div className="text-center">
-            <div>Team 2</div>
-            <div>{this.state.score[1]}</div>
-          </div>
+  return (
+    <div className="Board w-8/12" >
+      <div className="Score flex flex-row justify-around" >
+        <div className="text-center">
+          <div>Team 1</div>
+          <div>{score[0]}</div>
         </div>
-        
-        {this.renderCard(1)}
-        {this.renderCard(2)}
-        {this.renderCard(3)}
-        {this.renderCard(4)}
-        {this.renderCard(5)}
-        {this.renderCard(6)}
-        {this.renderCard(7)}
-        {this.renderCard(8)}
-        {this.renderCard(9)}
-        {this.renderCard(10)}
+        <div className="text-center">
+          <div>Team 2</div>
+          <div>{score[1]}</div>
+        </div>
       </div>
-    );
-  }
+
+      {renderCard(1)}
+      {renderCard(2)}
+      {renderCard(3)}
+      {renderCard(4)}
+      {renderCard(5)}
+      {renderCard(6)}
+      {renderCard(7)}
+      {renderCard(8)}
+      {renderCard(9)}
+      {renderCard(10)}
+    </div>
+  );
 }
 
-class Game extends React.Component {
-  constructor(props) {
-    super(props);
+function Game(props) {
+  const initialState = dictionary.map(word => ({
+    'word': word,
+    'team': 0,
+    'revealed': false,
+  }));
 
-    const game = dictionary.map(word => ({
-      'word': word,
-      'team': 0  
-    }));
-    
-    this.state = { 
-      game: game,
-    };
-  }
+  const [game, setGame] = useState(initialState)
 
-  render() {
-    return (
-      <div className="Game container flex">
-        <div className="w-2/12">
-        </div>
-        <Board />
-        <div className="w-2/12">
-        </div>
+  return (
+    <div className="Game container flex">
+      <div className="w-2/12">
       </div>
-    );
-  }
+      <Board />
+      <div className="w-2/12">
+      </div>
+    </div>
+  );
 }
 
 function Codename() {
