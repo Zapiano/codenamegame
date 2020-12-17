@@ -1,61 +1,11 @@
 import "../index.css";
 import React, { useState } from "react";
+
+// Helpers
 import initialGameState from "../helpers/initialGameState.js";
 
-function Card(props) {
-  return (
-    <div className="Card w-1/5 m-0 p-1 inline-block">
-      <div
-        onClick={() => props.onCardClick(props.cardState["team"])}
-        className="
-        bg-gray-300 
-        h-20 rounded 
-        shadow-sm 
-        text-center 
-        flex 
-        flex-col 
-        justify-center"
-      >
-        {props.cardState["word"]}
-      </div>
-    </div>
-  );
-}
-
-function Board(props) {
-  const renderCard = (cardState, index) => {
-    return (
-      <Card
-        cardState={cardState}
-        key={index}
-        onCardClick={(team) => props.onCardClick(team)}
-      />
-    );
-  };
-
-  const cards = [];
-
-  props.gameState.forEach((cardState, index) =>
-    cards.push(renderCard(cardState, index))
-  );
-
-  return (
-    <div className="Board w-8/12">
-      <div className="Score flex flex-row justify-around">
-        <div className="text-center">
-          <div>Team 1</div>
-          <div>{props.score[0]}</div>
-        </div>
-        <div className="text-center">
-          <div>Team 2</div>
-          <div>{props.score[1]}</div>
-        </div>
-      </div>
-
-      {cards}
-    </div>
-  );
-}
+//Components
+import Board from "./Board"
 
 function Game(props) {
   const initialScore = [7, 7];
