@@ -10,7 +10,7 @@ function Board(props) {
       <Card
         cardState={cardState}
         key={index}
-        onCardClick={(team) => props.onCardClick(team)}
+        onCardClick={() => props.onCardClick(index)}
       />
     );
   };
@@ -34,7 +34,7 @@ function Board(props) {
         </div>
       </div>
 
-      {cards}
+      <div className="flex flex-row flex-wrap">{cards}</div>
     </div>
   );
 }

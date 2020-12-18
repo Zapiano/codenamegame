@@ -19,6 +19,11 @@ const dictionary = [
   "laranja",
   "açaí",
   "jabuticaba",
+  "amora",
+  "framboesa",
+  "melão",
+  "cupuaçú",
+  "cereja"
 ];
 
 // Helper function to suffle array

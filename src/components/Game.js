@@ -8,17 +8,29 @@ import initialGameState from "../helpers/initialGameState.js";
 import Board from "./Board"
 
 function Game(props) {
-  const initialScore = [7, 7];
-
-  const [score, setScore] = useState(initialScore);
+  const [score, setScore] = useState([6,7]);
   const [gameState, setGameState] = useState(initialGameState);
 
-  const onCardClick = (team) => {
-    const newScore = [...score];
-    if (score[team - 1] == 0) {return;}
-
-    newScore[team - 1] = score[team - 1] - 1;
+  const updateScore = (cardId) => {
+    const newScore = score.slice();
+    newScore[gameState[cardId]['team'] - 1] -= 1;
     setScore(newScore);
+  }
+
+  const onCardClick = (cardId) => {
+    const cardState = gameState[cardId];
+
+    if (cardState['revealed'] === true) { return; }
+    
+    // update score
+    const isTeamCard = (cardState['team'] !== null && cardState['team'] !== -1);
+    if ( isTeamCard ) { updateScore(cardId)}
+
+    // update gameState
+    const newGameState = gameState.slice();
+    newGameState[cardId]['revealed'] = true;
+    setGameState(newGameState);
+
   };
 
   return (
@@ -27,7 +39,7 @@ function Game(props) {
       <Board
         score={score}
         gameState={gameState}
-        onCardClick={(team) => onCardClick(team)}
+        onCardClick={(cardId) => onCardClick(cardId)}
       />
       <div className="w-2/12"></div>
     </div>
