@@ -23,6 +23,12 @@ function Board(props) {
 
   return (
     <div className="Board">
+      <div 
+        onClick={() => props.onNextTurnClick()}
+        className="p-2 rounded shadow-sm bg-purple-100"
+      >
+        Next turn
+      </div>
       <div className="flex flex-row flex-wrap">{cards}</div>
     </div>
   );

@@ -12,7 +12,7 @@ function Card(props) {
   const cardState = props.cardState;
   const cardTeam = cardState["team"];
 
-  const teamOneClass = " bg-pink-400";
+  const teamOneClass = " bg-pink-500";
   const teamTwoClass = " bg-yellow-400";
   const loserClass = " bg-black text-gray-100";
   const teamNullClass = " bg-gray-300";
