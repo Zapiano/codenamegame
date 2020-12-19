@@ -22,18 +22,7 @@ function Board(props) {
   );
 
   return (
-    <div className="Board w-8/12">
-      <div className="Score flex flex-row justify-around">
-        <div className="text-center">
-          <div>Team 1</div>
-          <div>{props.score[0]}</div>
-        </div>
-        <div className="text-center">
-          <div>Team 2</div>
-          <div>{props.score[1]}</div>
-        </div>
-      </div>
-
+    <div className="Board">
       <div className="flex flex-row flex-wrap">{cards}</div>
     </div>
   );
