@@ -1,0 +1,26 @@
+type Game @model {
+  id: ID!
+  name: String!
+  players: [Player] @connection(keyName: "byGame", fields: ["id"]) 
+  cards: [Card] @connection(keyName: "byGame", fields: ["id"] )
+  currentTeam: String!
+  currentRole: String!
+}
+
+type Card @model
+  @key(name: "byGame", fields: ["gameID"]) {
+  id: ID!
+  gameID: ID!
+  word: String!
+  team: String!
+  revealed: Boolean!
+}
+
+type Player @model 
+  @key(name: "byGame", fields: ["gameID"]) {
+  id: ID!
+  gameID: ID!
+  name: String!
+  team: String!
+  role: String!
+}
