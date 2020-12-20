@@ -1,0 +1,10 @@
+{
+  "auth": {
+    "codeamegame0036d344": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
+    }
+  }
+}

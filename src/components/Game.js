@@ -1,5 +1,6 @@
 import "../index.css";
 import React, { useState } from "react";
+import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react'
 
 // Helpers
 import initialGameState from "../helpers/initialGameState.js";
@@ -55,6 +56,8 @@ function Game(props) {
 
   return (
     <div className="Game w-full xl:mx-20 lg:mx-10 md:mx-5 mx-2">
+      <AmplifySignOut />
+
       <div className="flex py-20">
         <div className="w-2/12">
           <StatusMenu 
@@ -75,4 +78,4 @@ function Game(props) {
   );
 }
 
-export default Game;
+export default withAuthenticator(Game);
