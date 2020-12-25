@@ -9,8 +9,10 @@ import initialGameState from "../helpers/initialGameState.js";
 import Board from "./Board"
 import StatusMenu from "./StatusMenu.js"
 
-
 function Game(props) {
+  // use game id to request score, players, state, etc 
+  // TODO
+
   const [score, setScore] = useState([6,7]);
   const [gameState, setGameState] = useState(initialGameState);
   // roles can be either "guesser" or "master"
@@ -25,15 +27,11 @@ function Game(props) {
   const onCardClick = (cardId) => {
     const cardState = gameState[cardId];
 
-    if (cardState["revealed"] === true) {
-      return;
-    }
+    if (cardState["revealed"] === true) { return; } 
 
     // update score
     const isTeamCard = cardState["team"] !== null && cardState["team"] !== -1;
-    if (isTeamCard) {
-      updateScore(cardId);
-    }
+    if (isTeamCard) { updateScore(cardId); }
 
     // update gameState
     const newGameState = gameState.slice();
@@ -53,6 +51,7 @@ function Game(props) {
 
     setCurrentTurn(nextTurn);
   };
+
 
   return (
     <div className="Game w-full xl:mx-20 lg:mx-10 md:mx-5 mx-2">

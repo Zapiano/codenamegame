@@ -1,5 +1,5 @@
 import "../index.css";
-import React, { useState } from "react";
+import React from "react";
 
 // Components
 import Card from "./Card"
