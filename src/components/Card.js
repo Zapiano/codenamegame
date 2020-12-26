@@ -19,10 +19,10 @@ function Card(props) {
   let cardClass = "h-20 md:h-32 rounded shadow-sm text-center flex flex-col justify-center"
   let cardContent = '';
 
-  if (cardTeam === 1) { cardClass += teamOneClass }
-  if (cardTeam === 2) { cardClass += teamTwoClass }
-  if (cardTeam === -1) { cardClass += loserClass }
-  if (cardTeam === null) { cardClass += teamNullClass }
+  if (cardTeam === '1') { cardClass += teamOneClass }
+  if (cardTeam === '2') { cardClass += teamTwoClass }
+  if (cardTeam === '-1') { cardClass += loserClass }
+  if (cardTeam === 'null') { cardClass += teamNullClass }
   if (cardState["revealed"]) { cardContent = props.cardState["word"]; }
 
   return (

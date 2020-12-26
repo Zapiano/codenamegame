@@ -78,7 +78,7 @@ for(let index of loserCardIndex) {
 for(let index of nullCardsIndex) {
   initialGameState[index] = {
     word: dictionary[index],
-    team: null,
+    team: 'null',
     revealed: false,
   };
 }

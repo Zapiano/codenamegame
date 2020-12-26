@@ -1,21 +1,13 @@
 import "../index.css";
 import React, { useState } from "react";
-import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react'
-
-// Helpers
-import initialGameState from "../helpers/initialGameState.js";
 
 //Components
 import Board from "./Board"
 import StatusMenu from "./StatusMenu.js"
 
 function Game(props) {
-  // use game id to request score, players, state, etc 
-  // TODO
-
   const [score, setScore] = useState([6,7]);
-  const [gameState, setGameState] = useState(initialGameState);
-  // roles can be either "guesser" or "master"
+  const [gameState, setGameState] = useState(props.game.cards);
   const [currentTurn, setCurrentTurn] = useState({"team": 0, "role": "guesser"})
 
   const updateScore = (cardId) => {
@@ -55,10 +47,9 @@ function Game(props) {
 
   return (
     <div className="Game w-full xl:mx-20 lg:mx-10 md:mx-5 mx-2">
-      <AmplifySignOut />
-
       <div className="flex py-20">
         <div className="w-2/12">
+          <div>{props.game.id}</div>
           <StatusMenu 
             score={score} 
             currentTurn={currentTurn} 
@@ -77,4 +68,4 @@ function Game(props) {
   );
 }
 
-export default withAuthenticator(Game);
+export default Game;

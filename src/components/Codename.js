@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-//import { onCreateNote, onDeleteNote } from './graphql/subscriptions';
+import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react'
 import '../index.css'
 
 // ------- components -------
@@ -13,24 +13,15 @@ function Codename() {
   // set spellCheck attribute to false
   document.body.setAttribute("spellCheck", false);
 
-  const [gameId, setGameId] = useState(null);
   const [game, setGame] = useState({})
 
-  async function enterGame(gameName) {
-    const currentGame = await getOrCreateGame(gameName);
-    const currentGameId = await currentGame.id;
-    console.log("Current game id", currentGameId)
-    setGame(currentGame);
-    setGameId(currentGameId);
-  }
-
   const onNewGameClick = (gameName) => {
-    enterGame(gameName);
+    getOrCreateGame(gameName, setGame);
   }
 
   const renderGame = () => {
-    if (gameId != null) {
-      return <Game game={game} gameId={gameId} />;
+    if (game.id != null) {
+      return <Game game={game} />;
     } else {
       return (
         <NewGameForm onNewGameClick={(gameName) => onNewGameClick(gameName)} />
@@ -45,4 +36,4 @@ function Codename() {
   );
 }
 
-export default Codename;
+export default withAuthenticator(Codename);
